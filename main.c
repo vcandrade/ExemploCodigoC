@@ -63,11 +63,11 @@ void listarAlunos() {
 
 void editarAluno() {
 
-    printf("\n\nEDICAO DE ALUNOS");
-
     int ra;
     int i;
 
+    printf("\n\nEDICAO DE ALUNOS");
+    
     printf("\nRA para busca: ");
     scanf("%d", &ra);
     setbuf(stdin, NULL);
@@ -81,6 +81,8 @@ void editarAluno() {
 
             printf("Informe o curso do aluno: ");
             gets(alunos[i].curso);
+            
+            break;
         }
     }
     if (i == TOTAL_ALUNOS) {
@@ -90,15 +92,77 @@ void editarAluno() {
 }
 
 void cadastrarLivro() {
+    
+    int i;
+    
     printf("\n\nCADASTRO DE LIVROS");
+    
+    for (i = 0; i < TOTAL_LIVROS; i++) {
+
+        if (livros[i].codigo == 0) {
+           
+            printf("\nInforme o código do livro: ");
+            scanf("%d", &livros[i].codigo);
+            setbuf(stdin, NULL);
+
+            printf("Informe o titulo do aluno: ");
+            gets(livros[i].titulo);
+
+            printf("Informe o numero de páginas do livro: ");
+            scanf("%d", &livros[i].numeroPaginas);
+            setbuf(stdin, NULL);
+            
+            break;
+        }
+    }    
+    if(i == TOTAL_LIVROS) {
+        
+        printf("\n\nEspaco insuficiente.");
+    }
 }
 
 void listarLivros() {
+    
     printf("\n\nLISTA DE LIVROS");
+    
+    for (int i = 0; i < TOTAL_LIVROS; i++) {
+
+        if (livros[i].codigo != 0) {
+
+            printf("\nCodigo: %d - Titulo: %s - Numero de Paginas: %d", livros[i].codigo, livros[i].titulo, livros[i].numeroPaginas);
+        }
+    }
 }
 
 void editarLivro() {
+    
+    int codigo;
+    int i;
+
     printf("\n\nEDICAO DE LIVROS");
+    
+    printf("\nCodigo para busca: ");
+    scanf("%d", &codigo);
+    setbuf(stdin, NULL);
+
+    for (i = 0; i < TOTAL_LIVROS; i++) {
+
+        if (livros[i].codigo == codigo) {
+
+            printf("Informe o codigo do livro: ");
+            gets(livros[i].titulo);
+
+            printf("Informe o curso do aluno: ");
+            scanf("%d", &livros[i].numeroPaginas);
+            setbuf(stdin, NULL);
+            
+            break;
+        }
+    }
+    if (i == TOTAL_LIVROS) {
+
+        printf("\nNenhum registro encontrado.");
+    }
 }
 
 int main(int argc, char** argv) {
